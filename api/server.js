@@ -12,8 +12,8 @@ app.use(morgan("tiny"));
 
 app.use("/api", routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 db.sync({ force: false }).then(() => {
-  app.listen(3000, () => console.log("Servidor escuchando en el puerto 3000"));
+  app.listen(3001, () => console.log("Servidor escuchando en el puerto 3001"));
 });
