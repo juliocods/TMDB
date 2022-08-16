@@ -1,7 +1,7 @@
 const Users = require("./Users");
 const Movies = require("./Movies");
 
-Users.belongsToMany(Movies, { through: "favorites_movies" });
-Movies.belongsToMany(Users, { through: "favorites_movies" });
+Movies.belongsToMany(Users, { through: "favorites_movies", as: "favorites" });
+Users.belongsToMany(Movies, { through: "favorites_movies", as: "favorites" });
 
 module.exports = { Users, Movies };

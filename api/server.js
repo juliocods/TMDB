@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
+const models = require("./models")
 
 const routes = require("./routes");
 const db = require("./config/db");

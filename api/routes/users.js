@@ -6,6 +6,7 @@ const { generateToken, validateToken } = require("../config/tokens");
 const { validateAuth } = require("../middlewares/auth");
 const Users = require("../models/Users");
 const Movies = require("../models/Movies");
+const { response } = require("express");
 
 router.get("/", (req, res, next) => {
   Users.findAll()
@@ -62,7 +63,7 @@ router.post("/me", validateAuth, async (req, res) => {
     const verifyToken = validateToken(req.body.token);
     const user = await Users.findByPk(verifyToken.user);
 
-    if (user) return res.send({ name: user.name });
+    if (user) return res.send({ name: user.name, lastname:user.lastname });
   } catch (error) {
     console.log(error);
   }
@@ -75,14 +76,36 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/favorites", (req, res) => {
-  const { userId, movieId } = req.body;
-  console.log("USER ID====== >", userId);
-  console.log("MOVIE ID =>>>>>>", movieId);
+  const { userId, movie } = req.body;
 
-/*   Users.findByPk(userId)
-    .then((user) => user.addFavorite(flightId))
+  Movies.create({
+    moviePin: movie.id,
+    title: movie.title,
+    description: movie.overview,
+    img: movie.poster_path,
+  }).then((movies) => {
+    Users.findOne({ where: { id: userId } })
+      .then((user) => {
+        user.addFavorites(movies);
+        res.sendStatus(200);
+      })
+      .catch((e) => console.log(e));
+  });
+});
+
+router.get("/favorites/:id", (req, res) => {
+  const id = req.params.id;
+  Users.findOne({ where: { id: id }, include: "favorites" }).then((resp) =>
+    res.send(resp.favorites)
+  );
+});
+
+router.delete("/favorites", (req, res) => {
+  const { userId, flightId } = req.query;
+  Users.findByPk(userId)
+    .then((user) => user.removeFavorite(flightId))
     .then(() => res.sendStatus(200))
-    .catch(() => res.status(500).send("Already added")); */
+    .catch((err) => res.status(500).send(err));
 });
 
 module.exports = router;

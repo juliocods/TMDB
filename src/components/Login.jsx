@@ -44,6 +44,7 @@ const Login = () => {
         <img
           src={`https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg`}
           style={{maxWidth:1400}}
+          
         />
       <div className="container p-5">
         <div className="row">

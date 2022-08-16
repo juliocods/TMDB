@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import { Route, Routes } from "react-router";
 import Home from "./components/Home";
+import Favorites from "./components/Favorites";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
@@ -30,6 +31,7 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home genre={genre} populars={populars} />} />

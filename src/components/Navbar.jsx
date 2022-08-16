@@ -11,12 +11,12 @@ const Navbar = () => {
     if (token) {
       axios.post(`http://localhost:3001/api/users/me`, { token });
     }
-  }, []);
+  });
 
-  const handdleLogout=(e)=>{
-    e.preventDefault()
-    localStorage.clear() 
-  }
+  const handdleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-dark">
@@ -42,19 +42,15 @@ const Navbar = () => {
                     <h5> {(user.name + " " + user.lastname).toUpperCase()}</h5>
                   </button>
                   <ul className="dropdown-menu">
-                    <button
-                      className="dropdown-item"
-                      onClick={(e)=>e.preventDefault()}
-                    >
+                    <Link to="/favorites">
+                    <button className="dropdown-item" >
                       Favorites
                     </button>
-                    <button
-                      className="dropdown-item"
-                      onClick={handdleLogout }
-                    >
+                    </Link>
+
+                    <button className="dropdown-item" onClick={handdleLogout}>
                       Logout
                     </button>
- 
                   </ul>
                 </div>
               </>
@@ -65,7 +61,6 @@ const Navbar = () => {
                     Login
                   </button>
                 </Link>
-
               </>
             )}
           </form>
