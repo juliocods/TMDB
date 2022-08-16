@@ -1,18 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Sidebar from "./components/Sidebar";
-import Head from "./components/Head";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import { Route, Routes } from "react-router";
-import SearchMovies from "./components/SearchMovies";
+import Home from "./components/Home";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
   const [populars, setPopulars] = useState([]);
-  useEffect(() => {
 
+  useEffect(() => {
     //GENEROS
     axios
       .get(
@@ -34,11 +32,8 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home genre={genre} populars={populars} />} />
       </Routes>
-      <Sidebar genres={genre} />
-      <SearchMovies/>
-      <Head populars={populars} />
-
     </>
   );
 };

@@ -1,11 +1,22 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Head = ({ populars }) => {
+  const userNoparse = localStorage.getItem("user");
+  const user = JSON.parse(userNoparse);
+
+  const addFavorites = (id) => {
+    axios.post("http://localhost:3001/api/users/favorites", {
+      userId: user.id,
+      movieId: id,
+    });
+  };
+
   return (
     <>
       <div className="container text-center">
-        <h1 className="pt-5">Populares</h1>
+        <h1 className="pt-5">Populars</h1>
         <div className="row">
           {populars.map((data, i) => (
             <div className="col-3 mt-5" key={i}>
@@ -20,9 +31,12 @@ const Head = ({ populars }) => {
                   <p className="card-text">
                     {data.overview.slice(0, 80) + "..."}
                   </p>
-                  <Link to={`/${data.id}`}>
-                    <button className="btn btn-primary">See Details</button>
-                  </Link>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => addFavorites(data.id)}
+                  >
+                    Add To Favorites
+                  </button>
                 </div>
               </div>
             </div>

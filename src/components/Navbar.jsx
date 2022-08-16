@@ -1,7 +1,23 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+  const userNoparse = localStorage.getItem("user");
+  const user = JSON.parse(userNoparse);
+  useEffect(() => {
+    if (token) {
+      axios.post(`http://localhost:3001/api/users/me`, { token });
+    }
+  }, []);
+
+  const handdleLogout=(e)=>{
+    e.preventDefault()
+    localStorage.clear() 
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
@@ -14,14 +30,44 @@ const Navbar = () => {
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <form className="d-flex" role="search">
-            <Link to="/register">
-              <p className="text-light me-4 mt-2">REGISTER?</p>
-            </Link>
-            <Link to="/login">
-              <button className="btn btn-outline-info" type="submit">
-                Login
-              </button>
-            </Link>
+            {user ? (
+              <>
+                <div className="dropdown">
+                  <button
+                    className="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <h5> {(user.name + " " + user.lastname).toUpperCase()}</h5>
+                  </button>
+                  <ul className="dropdown-menu">
+                    <button
+                      className="dropdown-item"
+                      onClick={(e)=>e.preventDefault()}
+                    >
+                      Favorites
+                    </button>
+                    <button
+                      className="dropdown-item"
+                      onClick={handdleLogout }
+                    >
+                      Logout
+                    </button>
+ 
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="btn btn-outline-info" type="submit">
+                    Login
+                  </button>
+                </Link>
+
+              </>
+            )}
           </form>
         </div>
       </div>

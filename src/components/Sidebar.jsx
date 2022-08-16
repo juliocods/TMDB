@@ -8,7 +8,7 @@ const Sidebar = ({ genres }) => {
         <ul className="nav justify-content-center">
           {genres.map((data, i) => (
             <li className="nav-item" key={i}>
-              <Link to={` /${data.id}`}>
+              <Link to={`/${data.id}`}>
                 <p className="nav-link active text-light" aria-current="page">
                   {data.name}
                 </p>

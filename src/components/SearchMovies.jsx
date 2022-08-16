@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SearchMovies = () => {
   const [value, setValue] = useState("");
@@ -19,14 +20,15 @@ const SearchMovies = () => {
       .then((res) => setMovies(res.data.results));
 
     setValue("");
-    console.log("SEARCH", movies);
   };
   return (
     <>
-      <div className="bg-info bg-opacity-75 py-4" style={{paddingLeft:400, paddingRight:400}}>
+      <div
+        className="bg-info bg-opacity-75 py-4"
+        style={{ paddingLeft: 400, paddingRight: 400 }}
+      >
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-
             <input
               type="text"
               placeholder="Search Movie"
@@ -36,11 +38,25 @@ const SearchMovies = () => {
             />
           </div>
         </form>
-        <div>
-          {movies.map((data, i) => (
-            <li key={i}>{data.original_title}</li>
-          ))}
-        </div>
+      </div>
+
+      <div className="row container-fluid">
+        {movies.map((data, i) => (
+          <div className="col-2 p-3 pt-5" key={i}>
+            <div className="card">
+              <img
+                src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
+                <Link to={`/${data.id}`}>
+                  <button className="btn btn-primary">See Details</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

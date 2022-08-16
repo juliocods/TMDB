@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import {  useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handdleName = (e) => {
     setName(e.target.value);
@@ -23,71 +26,73 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/api/users/register", {
-      name,
-      lastname,
-      email,
-      password,
-    });
-    setName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
+    axios
+      .post("http://localhost:3001/api/users/register", {
+        name,
+        lastname,
+        email,
+        password,
+      })
 
-    alert("Registrado con éxito");
+      .then(() => navigate("/"))
+      .catch(() => alert("Usuario no existe"));
   };
 
   return (
     <>
-      <form class="row g-4  pt-5 pb-3  bg-secondary  bg-opacity-50" onSubmit={handleSubmit}>
-      <div class="col-auto">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Name"
-            onChange={handdleName}
-            value={name}
-          />
-        </div>
-      <div class="col-auto">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Last Name"
-            onChange={handdleLastName}
-            value={lastname}
-          />
-        </div>
-      <div class="col-auto">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Email"
-            onChange={handdleEmail}
-            value={email}
-          />
-        </div>
+      <div className="row">
+        <div className="col"></div>
+        <div className="col pt-5">
+          <h1 className="mb-5">Register</h1>
+          <form className="" onSubmit={handleSubmit}>
+            <div className="col-auto">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Name"
+                onChange={handdleName}
+                value={name}
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Last Name"
+                onChange={handdleLastName}
+                value={lastname}
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Email"
+                onChange={handdleEmail}
+                value={email}
+              />
+            </div>
 
-        <div class="col-auto">
-          <label for="inputPassword2" class="visually-hidden">
-            Password
-          </label>
-          <input
-            type="password"
-            class="form-control"
-            id="inputPassword2"
-            placeholder="Password"
-            onChange={handdlePassword}
-            value={password}
-          />
+            <div className="col-auto">
+              <label className="visually-hidden">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="inputPassword2"
+                placeholder="Password"
+                onChange={handdlePassword}
+                value={password}
+              />
+            </div>
+            <div className="col-auto">
+              <button type="submit" className="btn btn-primary mb-3">
+                Register
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">
-            Register
-          </button>
-
-        </div>
-      </form>
+        <div className="col"></div>
+      </div>
     </>
     /*     <div style={{backgroundColor:"gray", textAlign:"center",paddingTop:20, paddingBottom:40}}>
       <h1>REGISTER</h1>
