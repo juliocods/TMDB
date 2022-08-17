@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const token = localStorage.getItem("token");
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
+  const navigate = useNavigate();
   useEffect(() => {
     if (token) {
       axios.post(`http://localhost:3001/api/users/me`, { token });
@@ -16,6 +17,7 @@ const Navbar = () => {
   const handdleLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -29,6 +31,26 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+
+          <div class="collapse navbar-collapse " id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <Link to={"/"}>
+                  <a class="nav-link text-light" href="#">
+                    Movies
+                  </a>
+                </Link>
+              </li>
+              <li class="nav-item ">
+                <Link to={"/series"}>
+                  <a class="nav-link text-light" href="#">
+                    Series
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           <form className="d-flex" role="search">
             {user ? (
               <>
@@ -43,15 +65,11 @@ const Navbar = () => {
                   </button>
                   <ul className="dropdown-menu">
                     <Link to="/favorites">
-                    <button className="dropdown-item" >
-                      Favorites
-                    </button>
+                      <button className="dropdown-item">Favorites</button>
                     </Link>
-                  <Link to={"/profile"}>
-                    <button className="dropdown-item" >
-                      My profile
-                    </button>
-                  </Link>
+                    <Link to={"/profile"}>
+                      <button className="dropdown-item">My profile</button>
+                    </Link>
 
                     <button className="dropdown-item" onClick={handdleLogout}>
                       Logout

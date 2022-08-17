@@ -6,7 +6,6 @@ import Populars from "./Populars";
 const Home = ({genre, populars}) => {
   return (
     <>
-      <Sidebar genres={genre} />
       <SearchMovies />
       <Populars populars={populars} />
     </>

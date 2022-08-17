@@ -24,9 +24,14 @@ const SearchMovies = () => {
   return (
     <>
       <div
-        className="bg-info bg-opacity-75 py-4 pt-5 pb-5"
+        className="  py-4 pt-5 pb-5"
         style={{ paddingLeft: 400, paddingRight: 400 }}
       >
+        <h3 className="mb-5">
+          Welcome. Millions of movies, TV shows and people to discover. Explore
+          now.
+        </h3>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
@@ -42,7 +47,7 @@ const SearchMovies = () => {
 
       <div className="row container-fluid">
         {movies.map((data, i) => (
-          <Card data={data} key={data.id}/>
+          <Card data={data} key={data.id} />
         ))}
       </div>
     </>

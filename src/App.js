@@ -9,10 +9,12 @@ import Favorites from "./components/Favorites";
 import MovieDetails from "./components/MovieDetails";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
+import HomeSeries from "./components/HomeSeries";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
   const [populars, setPopulars] = useState([]);
+  const [seriePopulars, setSeriePopulars] = useState([]);
 
   useEffect(() => {
     //GENEROS
@@ -28,6 +30,12 @@ const App = () => {
         `https://api.themoviedb.org/3/movie/popular?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&page=1`
       )
       .then((res) => setPopulars(res.data.results));
+
+      //SERIES POPULARES
+      axios.get(
+        `https://api.themoviedb.org/3/tv/popular?api_key=425c2d87b8b9c812c4101db1f80fd9e5&language=en-US&page=1`
+      )
+      .then(res=>setSeriePopulars(res.data.results))
   }, []);
 
   return (
@@ -35,6 +43,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home genre={genre} populars={populars} />} />
+        <Route path="/series" element={<HomeSeries populars={seriePopulars}/>} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
