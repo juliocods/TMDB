@@ -24,6 +24,14 @@ router.get("/:id", (req, res, next) => {
     })
     .catch(next);
 });
+router.get("/:name", (req, res, next) => {
+  const { name } = req.params;
+  Users.findAll({ where: { name: name } })
+    .then((pages) => {
+      res.send(pages);
+    })
+    .catch(next);
+});
 
 router.post("/register", (req, res) => {
   Users.create(req.body).then((user) => {

@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SearchUser from "./SearchUser";
 
 const Navbar = () => {
   const token = localStorage.getItem("token");
@@ -28,32 +29,24 @@ const Navbar = () => {
             TMDB
           </button>
         </Link>
-        <form class="d-flex ms-5 me-5" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search User"
-            aria-label="Search"
-          />
-        </form>
-
+        <SearchUser />
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
-          <div class="collapse navbar-collapse ms-5" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse ms-5" id="navbarText">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
                 <Link to={"/"}>
-                  <a class="nav-link text-light" href="#">
+                  <p className="nav-link text-light">
                     Movies
-                  </a>
+                  </p>
                 </Link>
               </li>
-              <li class="nav-item ">
+              <li className="nav-item ">
                 <Link to={"/series"}>
-                  <a class="nav-link text-light" href="#">
+                  <p className="nav-link text-light" >
                     Series
-                  </a>
+                  </p>
                 </Link>
               </li>
             </ul>
