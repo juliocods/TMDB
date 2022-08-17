@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Favorites from "./components/Favorites";
 import MovieDetails from "./components/MovieDetails";
 import Profile from "./components/Profile";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/movieDetails/:movieId"  element={<MovieDetails />} />
       </Routes>
+      <Footer/>
     </>
   );
 };
