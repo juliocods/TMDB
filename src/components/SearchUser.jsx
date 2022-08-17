@@ -2,24 +2,23 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Users from "./Users";
+import searchUser from "../state/user";
+import { useDispatch } from "react-redux";
 
 const SearchUser = () => {
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
- 
-  const [user, setUser] = useState([]); 
+  const dispatch = useDispatch();
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-    .get(`http://localhost:3001/api/users/${inputUser}`)
-    .then((res) => setUser(res.data))
-    setUser(" ");
-    navigate("/users");
-  };
-  
+/*     dispatch(searchUser(user)) */
 
-  const [inputUser, setInputUser] = useState("");
+  };
+
   const handleSearch = (e) => {
-    setInputUser(e.target.value);
+    setUser(e.target.value);
   };
 
   return (
@@ -32,10 +31,8 @@ const SearchUser = () => {
           placeholder="Search User"
           aria-label="Search"
           onChange={handleSearch}
-          value={inputUser}
         />
       </form>
-{      <Users users={user} />}
     </>
   );
 };

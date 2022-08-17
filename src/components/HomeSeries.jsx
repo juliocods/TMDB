@@ -3,7 +3,7 @@ import axios from "axios";
 import Populars from "./Populars";
 
 const HomeSeries = ({populars}) => {
-console.log(populars);
+
 
   return (
     <>

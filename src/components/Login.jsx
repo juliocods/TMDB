@@ -53,7 +53,7 @@ const Login = () => {
           <div className="col">
             <form onSubmit={handleSubmit}>
               <div className="mb-3 ">
-                <label for="exampleInputEmail1" class="form-label">
+                <label className="form-label">
                   Email
                 </label>
                 <input
@@ -63,12 +63,12 @@ const Login = () => {
                   onChange={handdleEmail}
                   value={email}
                 />
-                <div id="emailHelp" class="form-text">
+                <div id="emailHelp" className="form-text">
                   We'll never share your email with anyone else.
                 </div>
               </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">
+              <div className="mb-3">
+                <label className="form-label">
                   Password
                 </label>
                 <input
@@ -79,14 +79,14 @@ const Login = () => {
                   value={password}
                 />
               </div>
-              <div class="mb-3 ">
+              <div className="mb-3 ">
                 <Link to="/register">
-                  <label class="form-check-label" for="exampleCheck1">
+                  <label className="form-check-label">
                     Register
                   </label>
                 </Link>
               </div>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </form>

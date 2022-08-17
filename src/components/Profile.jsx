@@ -14,8 +14,6 @@ const Profile = () => {
       .then((res) => setFavorites(res.data));
   }, []);
 
-  console.log(favorites);
-
   return (
     <>
       <div className="row p-2 " style={{ backgroundColor: "#111d4a" }}>
@@ -45,68 +43,57 @@ const Profile = () => {
         <div className="col">
           <div
             id="carouselExampleControls"
-            class="carousel slide"
+            className="carousel slide"
             data-bs-ride="carousel"
           >
-            <div class="carousel-inner">
+            <div className="carousel-inner">
               {favorites.map((data, i) => (
-                <div class="carousel-item active">
-                  <div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-4">
+                <div className="carousel-item active" key={i}>
+                  <div className="card mb-3">
+                    <div className="row g-0">
+                      <div className="col-md-4">
                         <img
                           src={`https://image.tmdb.org/t/p/original/${data.img}`}
                           className="card-img-top"
                           alt="..."
                         />
                       </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h3 class="card-title">{data.title}</h3>
-                          <p class="card-text">
-                          {data.description.slice(0, 200) + "..."}
+                      <div className="col-md-8">
+                        <div className="card-body">
+                          <h3 className="card-title">{data.title}</h3>
+                          <p className="card-text">
+                            {data.description.slice(0, 200) + "..."}
                           </p>
-            
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/*                   <div className="card text-center" style={{ width: "12rem" }}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/original/${data.img}`}
-                      className="card-img-top"
-                      alt="..."
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{data.title}</h5>
-                    </div>
-                  </div> */}
                 </div>
               ))}
             </div>
             <button
-              class="carousel-control-prev"
+              className="carousel-control-prev"
               type="button"
               data-bs-target="#carouselExampleControls"
               data-bs-slide="prev"
             >
               <span
-                class="carousel-control-prev-icon"
+                className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span class="visually-hidden">Previous</span>
+              <span className="visually-hidden">Previous</span>
             </button>
             <button
-              class="carousel-control-next"
+              className="carousel-control-next"
               type="button"
               data-bs-target="#carouselExampleControls"
               data-bs-slide="next"
             >
               <span
-                class="carousel-control-next-icon"
+                className="carousel-control-next-icon"
                 aria-hidden="true"
               ></span>
-              <span class="visually-hidden">Next</span>
+              <span className="visually-hidden">Next</span>
             </button>
           </div>
         </div>
