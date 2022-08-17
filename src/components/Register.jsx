@@ -34,8 +34,9 @@ const Register = () => {
         password,
       })
 
-      .then(() => navigate("/"))
+      .then(() => navigate("/login"))
       .catch(() => alert("Usuario no existe"));
+      navigate("/")
   };
 
   return (
