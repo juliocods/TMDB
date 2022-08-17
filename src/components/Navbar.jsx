@@ -47,6 +47,11 @@ const Navbar = () => {
                       Favorites
                     </button>
                     </Link>
+                  <Link to={"/profile"}>
+                    <button className="dropdown-item" >
+                      My profile
+                    </button>
+                  </Link>
 
                     <button className="dropdown-item" onClick={handdleLogout}>
                       Logout

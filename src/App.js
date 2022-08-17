@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 import Home from "./components/Home";
 import Favorites from "./components/Favorites";
 import MovieDetails from "./components/MovieDetails";
+import Profile from "./components/Profile";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/" element={<Home genre={genre} populars={populars} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/movieDetails/:movieId"  element={<MovieDetails />} />
       </Routes>
