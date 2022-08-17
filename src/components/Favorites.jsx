@@ -1,19 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const userNoparse = localStorage.getItem("user");
   const user = JSON.parse(userNoparse);
-
+  
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/users/favorites/${user.id}`)
       .then((res) => setFavorites(res.data));
   }, []);
 
-  const deleteFavorite = (id) => {};
-
+  const removeFavorites = (id) => {
+    axios
+      .delete(
+        `http://localhost:3001/api/users/favorites/?userId=${user.id}&movieId=${id}`
+      )
+  };
   return (
     <>
       <div className="container text-center">
@@ -32,7 +37,12 @@ const Favorites = () => {
                   <p className="card-text">
                     {data.description.slice(0, 80) + "..."}
                   </p>
-                  <button className="btn btn-danger">Remove</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => removeFavorites(data.id)}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             </div>

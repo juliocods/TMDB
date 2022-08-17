@@ -63,7 +63,7 @@ router.post("/me", validateAuth, async (req, res) => {
     const verifyToken = validateToken(req.body.token);
     const user = await Users.findByPk(verifyToken.user);
 
-    if (user) return res.send({ name: user.name, lastname:user.lastname });
+    if (user) return res.send({ name: user.name, lastname: user.lastname });
   } catch (error) {
     console.log(error);
   }
@@ -101,9 +101,9 @@ router.get("/favorites/:id", (req, res) => {
 });
 
 router.delete("/favorites", (req, res) => {
-  const { userId, flightId } = req.query;
+  const { userId, movieId } = req.query;
   Users.findByPk(userId)
-    .then((user) => user.removeFavorite(flightId))
+    .then((user) => user.removeFavorite(movieId))
     .then(() => res.sendStatus(200))
     .catch((err) => res.status(500).send(err));
 });

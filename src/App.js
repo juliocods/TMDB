@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import { Route, Routes } from "react-router";
 import Home from "./components/Home";
 import Favorites from "./components/Favorites";
+import MovieDetails from "./components/MovieDetails";
 
 const App = () => {
   const [genre, setGenre] = useState([]);
@@ -31,10 +32,11 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
+        <Route path="/" element={<Home genre={genre} populars={populars} />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Home genre={genre} populars={populars} />} />
+        <Route path="/*" element={<MovieDetails />} />
       </Routes>
     </>
   );

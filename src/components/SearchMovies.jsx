@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Card from "../commons/Card";
 
 const SearchMovies = () => {
   const [value, setValue] = useState("");
@@ -42,20 +42,7 @@ const SearchMovies = () => {
 
       <div className="row container-fluid">
         {movies.map((data, i) => (
-          <div className="col-2 p-3 pt-5" key={i}>
-            <div className="card">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <Link to={`/${data.id}`}>
-                  <button className="btn btn-primary">See Details</button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Card data={data} key={data.id}/>
         ))}
       </div>
     </>

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import MovieDetails from "../components/MovieDetails";
 
 const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
@@ -18,9 +20,13 @@ const Card = ({ data }) => {
           className="card-img-top"
           alt="..."
         />
+
         <div className="card-body">
           <h5 className="card-title">{data.original_title}</h5>
-          <p className="card-text">{data.overview.slice(0, 80) + "..."}</p>
+          <p className="card-text">
+            {data.overview.slice(0, 80) + "..."} <a>See Details</a>{" "}
+          </p>
+
           <button
             className="btn btn-primary"
             onClick={() => addFavorites(data)}

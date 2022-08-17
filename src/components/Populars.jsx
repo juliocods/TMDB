@@ -2,7 +2,7 @@
 import React from "react";
 import Card from "../commons/Card";
 
-const Head = ({ populars }) => {
+const Populars = ({ populars }) => {
 
 
   return (
@@ -11,7 +11,7 @@ const Head = ({ populars }) => {
         <h1 className="pt-5">Populars</h1>
         <div className="row">
           {populars.map((data) => (
-            <Card data={data}/>
+            <Card data={data} key={data.id}/>
           ))}
         </div>
       </div>
@@ -19,4 +19,4 @@ const Head = ({ populars }) => {
   );
 };
 
-export default Head;
+export default Populars;
