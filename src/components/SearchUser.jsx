@@ -1,14 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Users from "./Users";
 
 const SearchUser = () => {
   const navigate = useNavigate();
+ 
+  const [user, setUser] = useState([]); 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //USERS
-
+    axios
+    .get(`http://localhost:3001/api/users/${inputUser}`)
+    .then((res) => setUser(res.data))
+    setUser(" ");
     navigate("/users");
   };
+  
+
+  const [inputUser, setInputUser] = useState("");
+  const handleSearch = (e) => {
+    setInputUser(e.target.value);
+  };
+
   return (
     <>
       {" "}
@@ -18,9 +31,11 @@ const SearchUser = () => {
           type="search"
           placeholder="Search User"
           aria-label="Search"
+          onChange={handleSearch}
+          value={inputUser}
         />
       </form>
-      
+{      <Users users={user} />}
     </>
   );
 };

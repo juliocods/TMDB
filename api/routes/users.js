@@ -16,20 +16,18 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/:id", (req, res, next) => {
+/* router.get("/:id", (req, res, next) => {
   const { id } = req.params;
   Users.findAll({ where: { id: id } })
     .then((pages) => {
       res.send(pages);
     })
     .catch(next);
-});
+}); */
 router.get("/:name", (req, res, next) => {
   const { name } = req.params;
-  Users.findAll({ where: { name: name } })
-    .then((pages) => {
-      res.send(pages);
-    })
+  Users.findAll({ where: { name: name }, include: "favorites" })
+    .then((resp) => res.send(resp))
     .catch(next);
 });
 
