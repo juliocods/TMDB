@@ -24,7 +24,7 @@ const SearchMovies = () => {
   return (
     <>
       <div
-        className="bg-info bg-opacity-75 py-4"
+        className="bg-info bg-opacity-75 py-4 pt-5 pb-5"
         style={{ paddingLeft: 400, paddingRight: 400 }}
       >
         <form onSubmit={handleSubmit}>
