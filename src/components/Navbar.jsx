@@ -28,11 +28,19 @@ const Navbar = () => {
             TMDB
           </button>
         </Link>
+        <form class="d-flex ms-5 me-5" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search User"
+            aria-label="Search"
+          />
+        </form>
 
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
-          <div class="collapse navbar-collapse " id="navbarText">
+          <div class="collapse navbar-collapse ms-5" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <Link to={"/"}>
