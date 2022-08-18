@@ -1,24 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Users from "./Users";
-import searchUser from "../state/user";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const SearchUser = () => {
-  const [user, setUser] = useState("");
+  const [inputUser, setImputUser] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-/*     dispatch(searchUser(user)) */
-
+    axios
+      .get(`http://localhost:3001/api/users/${inputUser}`)
+      .then((res) => console.log(res.data));
+    navigate("/users");
   };
 
   const handleSearch = (e) => {
-    setUser(e.target.value);
+    setImputUser(e.target.value);
   };
 
   return (
