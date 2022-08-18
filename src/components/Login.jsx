@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +11,7 @@ const Login = () => {
   const handdleEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handdlePassword = (e) => {
     setPassword(e.target.value);
   };
@@ -35,27 +35,27 @@ const Login = () => {
       })
       .then(() => navigate("/"))
       .catch(() => alert("Usuario no existe"));
-      navigate("/")
+    navigate("/");
+  };
+
+  const loginWithGoogle = () => {
+alert("En proceso")
   };
 
   return (
     <>
-
-        <img
-          src={`https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg`}
-          style={{maxWidth:1400}}
-          alt=""
-          
-        />
+      <img
+        src={`https://blogdesuperheroes.es/imagen-noti/bds_first-class_poster-091.jpg`}
+        style={{ maxWidth: 1400 }}
+        alt=""
+      />
       <div className="container p-5">
         <div className="row">
           <div className="col"></div>
           <div className="col">
             <form onSubmit={handleSubmit}>
               <div className="mb-3 ">
-                <label className="form-label">
-                  Email
-                </label>
+                <label className="form-label">Email</label>
                 <input
                   type="text"
                   className="form-control"
@@ -68,9 +68,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="mb-3">
-                <label className="form-label">
-                  Password
-                </label>
+                <label className="form-label">Password</label>
                 <input
                   type="password"
                   className="form-control"
@@ -81,13 +79,14 @@ const Login = () => {
               </div>
               <div className="mb-3 ">
                 <Link to="/register">
-                  <label className="form-check-label">
-                    Register
-                  </label>
+                  <label className="form-check-label">Register</label>
                 </Link>
               </div>
               <button type="submit" className="btn btn-primary">
                 Submit
+              </button>
+              <button className="btn btn-primary" onClick={loginWithGoogle}>
+                Login With Google
               </button>
             </form>
           </div>

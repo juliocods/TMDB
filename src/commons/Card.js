@@ -23,10 +23,8 @@ const Card = ({ data }) => {
         </Link>
         <div className="card-body">
           <h5 className="card-title">{data.original_title}</h5>
-          <p className="card-text">
-            {data.overview.slice(0, 80) + "..."} <a>See Details</a>{" "}
-          </p>
-
+          <p className="card-text">{data.overview.slice(0, 80) + "..."}</p>
+          <p className="text-info">Click in the image for more details</p>
           <button
             className="btn btn-primary"
             onClick={() => addFavorites(data)}

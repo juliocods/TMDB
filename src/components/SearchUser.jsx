@@ -1,18 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { UserContext } from "../context/UserContext";
 
 const SearchUser = () => {
   const [inputUser, setImputUser] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+/*   const { user, setUser } = useContext(UserContext); ASI SE TRAE PARA SETEAR Y CONSUMIR USER*/
+const {setUser}= useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .get(`http://localhost:3001/api/users/${inputUser}`)
-      .then((res) => console.log(res.data));
+      .then((res) => setUser(res.data[0]));
     navigate("/users");
   };
 
