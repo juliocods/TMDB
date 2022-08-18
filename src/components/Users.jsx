@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Users = ({ users }) => {
-  console.log(users);
-
+const Users = () => {
   return (
     <>
       <div className="row p-5">

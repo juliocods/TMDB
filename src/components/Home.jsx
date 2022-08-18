@@ -1,4 +1,3 @@
-import Sidebar from "./Sidebar";
 import SearchMovies from "./SearchMovies";
 import React from "react";
 import Populars from "./Populars";

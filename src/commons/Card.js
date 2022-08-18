@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import MovieDetails from "../components/MovieDetails";
-
 
 const Card = ({ data }) => {
   const userNoparse = localStorage.getItem("user");
